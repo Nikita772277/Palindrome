@@ -1,35 +1,77 @@
-﻿Console.WriteLine("Введите слово");
-string w = Console.ReadLine();
-char[] word = w.ToCharArray();
-bool check = false;
-void Check()
+﻿void Check()
 {
-    foreach (char check1 in word)
+    while (true)
     {
-        foreach (char check2 in word.Reverse())
-        {
+        Console.WriteLine("Введите слово");
+        string w = Console.ReadLine();
+        char[] word = w.ToCharArray();
+        bool check = false;
+        bool checkword = true;
 
-            if (check2 == check1)
+        foreach (char c in word)
+        {
+            if (char.IsLetter(c))
             {
-                check = true;
+
+
+                foreach (char check1 in word)
+                {
+                    foreach (char check2 in word.Reverse())
+                    {
+                        if (checkword == true)
+                        {
+                            if (check2 == check1)
+                            {
+                                check = true;
+                            }
+                            else if (check2 != check1)
+                            {
+                                check = false;
+                            }
+                        }
+                    }
+                }
+
             }
-            else if (check2 != check1)
+            else if (char.IsLetter(c) == false)
             {
-                check = false;
+
+                checkword = false;
+
             }
         }
-    }
-    if (check == true)
-    {
-        Console.WriteLine();
-        Console.WriteLine($"Слово палиндром");
-        Console.WriteLine();
-    }
-    else if (check == false)
-    {
-        Console.WriteLine();
-        Console.WriteLine($"Слово не палиндром");
-        Console.WriteLine();
+        if (checkword == false)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Вы ввели не слово");
+            Console.WriteLine();
+        }
+
+        if (checkword == true)
+        {
+            if (check == true)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Слово палиндром");
+                Console.WriteLine();
+            }
+            else if (check == false)
+            {
+                if (w == "" || w == " ")
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Вы ввели не слово");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"Слово не палиндром");
+                    Console.WriteLine();
+                }
+
+            }
+        }
     }
 }
 Check();
